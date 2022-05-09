@@ -15,7 +15,7 @@ app.post('/user', async (req: Request, res: Response) => {
     },
   })
 
-  res.json(result)
+  return res.json(result)
 })
 
 app.put('/user/:id', async (req: Request, res: Response) => {
@@ -29,7 +29,7 @@ app.put('/user/:id', async (req: Request, res: Response) => {
     },
   })
 
-  res.json(editedUser)
+  return res.json(editedUser)
 })
 
 app.delete('/user/:id', async (req: Request, res: Response) => {
@@ -38,7 +38,13 @@ app.delete('/user/:id', async (req: Request, res: Response) => {
     where: { id: Number(id) },
   })
 
-  res.json(deletedUser)
+  return res.json(deletedUser)
+})
+
+app.get('/users', async (req: Request, res: Response) => {
+  const users = await prisma.user.findMany({})
+
+  return res.json(users)
 })
 
 app.listen(3001, () => console.log('Listening on port 3001'))
