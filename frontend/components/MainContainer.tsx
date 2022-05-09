@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Button, Col, Container } from 'react-bootstrap'
+import RegisterForm from './RegisterForm'
+import UsersTable from './UsersTable'
 
 export default function MainContainer() {
   const [status, setStatus] = useState('showUser')
@@ -8,13 +10,27 @@ export default function MainContainer() {
     <Container>
       <Col className="justify-content-center text-center">
         {status === 'showList' ? (
-          <Button variant="primary" onClick={() => setStatus('showUser')}>
-            Ver usuários
-          </Button>
+          <Fragment>
+            <Button
+              variant="primary"
+              className="mb-2"
+              onClick={() => setStatus('showUser')}
+            >
+              Cadastrar usuários
+            </Button>
+            <UsersTable />
+          </Fragment>
         ) : (
-          <Button variant="success" onClick={() => setStatus('showList')}>
-            Ver lista
-          </Button>
+          <Fragment>
+            <Button
+              variant="success"
+              className="mb-2"
+              onClick={() => setStatus('showList')}
+            >
+              Ver lista
+            </Button>
+            <RegisterForm />
+          </Fragment>
         )}
       </Col>
     </Container>
