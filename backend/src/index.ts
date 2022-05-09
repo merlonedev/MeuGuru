@@ -18,4 +18,18 @@ app.post("/user", async (req: Request, res: Response) => {
 	res.json(result);
 });
 
+app.put("/user/:id", async (req: Request, res: Response) => {
+	const { id } = req.params;
+	const { name, email } = req.body;
+	const editedUser = await prisma.user.update({
+		where: { id: Number(id) },
+		data: {
+			name,
+			email,
+		},
+	});
+
+	res.json(editedUser);
+});
+
 app.listen(3001, () => console.log("Listening on port 3001"));
