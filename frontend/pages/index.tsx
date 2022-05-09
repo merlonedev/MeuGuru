@@ -1,11 +1,12 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import MainContainer from '../components/MainContainer'
 
-function LandingPage() {
+export default function MainPage() {
   return (
-    <>
-      <h1>Hello there</h1>
-    </>
+    <main className="m-3">
+      <h1 className="text-center">MeuGuru</h1>
+      <MainContainer />
+    </main>
   )
 }
-
-export default LandingPage
