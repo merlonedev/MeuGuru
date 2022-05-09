@@ -32,4 +32,13 @@ app.put('/user/:id', async (req: Request, res: Response) => {
   res.json(editedUser)
 })
 
+app.delete('/user/:id', async (req: Request, res: Response) => {
+  const { id } = req.params
+  const deletedUser = await prisma.user.delete({
+    where: { id: Number(id) },
+  })
+
+  res.json(deletedUser)
+})
+
 app.listen(3001, () => console.log('Listening on port 3001'))
