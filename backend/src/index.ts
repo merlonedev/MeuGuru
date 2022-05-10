@@ -54,6 +54,11 @@ app.get('/users', async (req: Request, res: Response) => {
   return res.json(users)
 })
 
+app.get('/userCount', async (req: Request, res: Response) => {
+  const userCount = await prisma.user.count()
+  return res.json(userCount)
+})
+
 app.get('/user/:id', async (req: Request, res: Response) => {
   const { id } = req.params
   const user = await prisma.user.findUnique({
