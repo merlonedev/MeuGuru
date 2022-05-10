@@ -62,8 +62,8 @@ export default function UsersList({ users, userCount }: Props) {
           <thead>
             <tr>
               <th>Id</th>
-              <th>Nome</th>
-              <th>E-mail</th>
+              <th className='w-25'>Nome</th>
+              <th className='w-25'>E-mail</th>
             </tr>
           </thead>
           <tbody>
