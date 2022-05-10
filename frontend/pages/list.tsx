@@ -3,6 +3,7 @@ import Router from 'next/router'
 import { useState } from 'react'
 import { Button, Container, Table } from 'react-bootstrap'
 import DeleteModal from '../components/DeleteModal'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export async function getServerSideProps() {
   const data = await fetch('http://localhost:3001/users')

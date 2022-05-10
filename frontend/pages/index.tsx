@@ -1,12 +1,16 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import React from 'react'
-import MainContainer from '../components/MainContainer'
+import NavBar from '../components/NavBar'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Container } from 'react-bootstrap'
 
 export default function MainPage() {
   return (
-    <main className="m-3">
-      <h1 className="text-center">MeuGuru</h1>
-      <MainContainer />
+    <main>
+      <NavBar />
+      <Container className='text-center mt-5'>
+        <h2>Nome: Rodrigo Merlone</h2>
+        <h2>Vaga: Dev. Fullstack Jr.</h2>
+      </Container>
     </main>
   )
 }

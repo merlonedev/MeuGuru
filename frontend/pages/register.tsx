@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import React, { useState } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function RegisterForm() {
   const [info, setInfo] = useState({
