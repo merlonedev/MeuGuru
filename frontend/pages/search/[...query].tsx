@@ -1,6 +1,6 @@
 import Router from 'next/router'
 import { Fragment, useState } from 'react'
-import { Container, Table } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import DeleteModal from '../../components/DeleteModal'
 import NavBar from '../../components/NavBar'
 import UsersTable from '../../components/UsersTable'
@@ -9,10 +9,10 @@ export async function getServerSideProps({ params }) {
   const data = await fetch(`http://localhost:3001/search/${params.query}`)
   const users = await data.json()
 
-  return { props: { users } }
+  return { props: { users, query: params.query } }
 }
 
-export default function SearchResult({ users }) {
+export default function SearchResult({ users, query }) {
   const [showModal, setShowModal] = useState(false)
   const [selected, setSelected] = useState(0)
 
@@ -29,11 +29,11 @@ export default function SearchResult({ users }) {
     await Router.push(`/edit/${id}`)
   }
 
-  console.log(users.length)
   return (
     <Fragment>
       <NavBar />
-      <Container>
+      <Container className="mt-2">
+        <h3>Resultados para: "{query}"</h3>
         <UsersTable
           users={users}
           handleEdit={handleEdit}
