@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Container, Table } from 'react-bootstrap'
+import { Button, Container, Table } from 'react-bootstrap'
 
 export async function getServerSideProps() {
   const data = await fetch('http://localhost:3001/users')
@@ -36,6 +36,12 @@ export default function UsersList({ users }: Props) {
               <td>{user.id}</td>
               <td>{user.name}</td>
               <td>{user.email}</td>
+              <td className="w-10">
+                <Button variant="warning">Editar</Button>
+              </td>
+              <td className="w-10">
+                <Button variant="danger">Excluir</Button>
+              </td>
             </tr>
           ))}
         </tbody>
