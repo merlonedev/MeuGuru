@@ -14,7 +14,7 @@ export default function EditModal({ show, close, name, email, id }) {
       })
 
       close()
-      await Router.push('/list')
+      await Router.push('/list/1')
     } catch (error) {
       console.error(error)
     }
