@@ -9,7 +9,7 @@ export default function DeleteModal({ show, close, selected }) {
         headers: { 'Content-Type': 'application/json' },
       })
 
-      await Router.push('/list')
+      await Router.push('/list/1')
       close()
     } catch (error) {
       console.error(error)
