@@ -1,7 +1,5 @@
 import Link from 'next/link'
-import { Fragment, useState } from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
-import RegisterForm from '../pages/register'
+import { Col, Container, Row } from 'react-bootstrap'
 
 export default function MainContainer() {
   return (

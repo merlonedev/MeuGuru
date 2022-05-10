@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Router from 'next/router'
 import { useState } from 'react'
 import { Button, Container, Table } from 'react-bootstrap'
 import DeleteModal from '../components/DeleteModal'
@@ -33,6 +34,10 @@ export default function UsersList({ users }: Props) {
     setShowModal(false)
   }
 
+  const handleEdit = async (id: number) => {
+    await Router.push(`/edit/${id}`)
+  }
+
   return (
     <Container>
       <Link href={'/'}>Voltar</Link>
@@ -46,12 +51,14 @@ export default function UsersList({ users }: Props) {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr>
+            <tr key={user.id}>
               <td>{user.id}</td>
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td className="w-10">
-                <Button variant="warning">Editar</Button>
+                <Button variant="warning" onClick={() => handleEdit(user.id)}>
+                  Editar
+                </Button>
               </td>
               <td className="w-10">
                 <Button
