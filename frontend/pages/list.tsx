@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import Router from 'next/router'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Button, Container, Table } from 'react-bootstrap'
 import DeleteModal from '../components/DeleteModal'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import NavBar from '../components/NavBar'
 
 export async function getServerSideProps() {
   const data = await fetch('http://localhost:3001/users')
@@ -40,44 +41,51 @@ export default function UsersList({ users }: Props) {
   }
 
   return (
-    <Container>
-      <Link href={'/'}>Voltar</Link>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>E-mail</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td className="w-10">
-                <Button variant="warning" onClick={() => handleEdit(user.id)}>
-                  Editar
-                </Button>
-              </td>
-              <td className="w-10">
-                <Button
-                  variant="danger"
-                  onClick={() => handleShowModal(user.id)}
-                >
-                  Excluir
-                </Button>
-              </td>
+    <Fragment>
+      <NavBar />
+      <Container>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nome</th>
+              <th>E-mail</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
-      <DeleteModal
-        show={showModal}
-        close={handleCloseModal}
-        selected={selected}
-      />
-    </Container>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td className="w-10">
+                  <Button
+                    variant="warning"
+                    onClick={() => handleEdit(user.id)}
+                    className="py-1"
+                  >
+                    Editar
+                  </Button>
+                </td>
+                <td className="w-10">
+                  <Button
+                    variant="danger"
+                    onClick={() => handleShowModal(user.id)}
+                    className="py-1"
+                  >
+                    Excluir
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+        <DeleteModal
+          show={showModal}
+          close={handleCloseModal}
+          selected={selected}
+        />
+      </Container>
+    </Fragment>
   )
 }

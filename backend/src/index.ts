@@ -41,11 +41,13 @@ app.delete('/user/:id', async (req: Request, res: Response) => {
   return res.json(deletedUser)
 })
 
-app.get('/users', async (req: Request, res: Response) => {
+app.get('/users', async (_req: Request, res: Response) => {
   const users = await prisma.user.findMany({
     orderBy: {
       id: 'asc',
     },
+    skip: 0,
+    take: 10,
   })
 
   return res.json(users)

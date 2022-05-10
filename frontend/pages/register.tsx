@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import Router from 'next/router'
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import NavBar from '../components/NavBar'
 
 export default function RegisterForm() {
   const [info, setInfo] = useState({
@@ -28,39 +29,41 @@ export default function RegisterForm() {
         body: JSON.stringify(info),
       })
 
-      await Router.push('/')
+      await Router.push('/list')
     } catch (error) {
       console.error(error)
     }
   }
 
   return (
-    <Container>
-      <Link href={'/'}>Voltar</Link>
-      <Form
-        className="d-flex flex-column align-items-center"
-        onSubmit={onSubmit}
-      >
-        <h3>Cadastrar usuário</h3>
-        <Form.Group className="mb-2 w-50 p-2" controlId="email">
-          <Form.Label>E-mail</Form.Label>
-          <Form.Control type="email" onChange={(e) => onChange(e)} />
-        </Form.Group>
+    <Fragment>
+      <NavBar />
+      <Container>
+        <Form
+          className="d-flex flex-column align-items-center"
+          onSubmit={onSubmit}
+        >
+          <h3>Cadastrar usuário</h3>
+          <Form.Group className="mb-2 w-50 p-2" controlId="email">
+            <Form.Label>E-mail</Form.Label>
+            <Form.Control type="email" onChange={(e) => onChange(e)} />
+          </Form.Group>
 
-        <Form.Group className="mb-2 w-50 p-2" controlId="name">
-          <Form.Label>Nome</Form.Label>
-          <Form.Control type="text" onChange={(e) => onChange(e)} />
-        </Form.Group>
+          <Form.Group className="mb-2 w-50 p-2" controlId="name">
+            <Form.Label>Nome</Form.Label>
+            <Form.Control type="text" onChange={(e) => onChange(e)} />
+          </Form.Group>
 
-        <Form.Group className="mb-2 w-50 p-2" controlId="password">
-          <Form.Label>Senha</Form.Label>
-          <Form.Control type="password" onChange={(e) => onChange(e)} />
-        </Form.Group>
+          <Form.Group className="mb-2 w-50 p-2" controlId="password">
+            <Form.Label>Senha</Form.Label>
+            <Form.Control type="password" onChange={(e) => onChange(e)} />
+          </Form.Group>
 
-        <Button variant="primary" type="submit" className="mb-2 w-25">
-          Cadastrar
-        </Button>
-      </Form>
-    </Container>
+          <Button variant="primary" type="submit" className="mb-2 w-25">
+            Cadastrar
+          </Button>
+        </Form>
+      </Container>
+    </Fragment>
   )
 }
