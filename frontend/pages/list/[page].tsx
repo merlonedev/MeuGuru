@@ -6,6 +6,7 @@ import DeleteModal from '../../components/DeleteModal'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBar from '../../components/NavBar'
 import Paginator from '../../components/Paginator'
+import UsersTable from '../../components/UsersTable'
 
 export async function getServerSideProps({ params }) {
   const data = await fetch('http://localhost:3001/users', {
@@ -58,42 +59,11 @@ export default function UsersList({ users, userCount }: Props) {
     <Fragment>
       <NavBar />
       <Container>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th className='w-25'>Nome</th>
-              <th className='w-25'>E-mail</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td className="w-10">
-                  <Button
-                    variant="warning"
-                    onClick={() => handleEdit(user.id)}
-                    className="py-1"
-                  >
-                    Editar
-                  </Button>
-                </td>
-                <td className="w-10">
-                  <Button
-                    variant="danger"
-                    onClick={() => handleShowModal(user.id)}
-                    className="py-1"
-                  >
-                    Excluir
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <UsersTable
+          users={users}
+          handleEdit={handleEdit}
+          handleShowModal={handleShowModal}
+        />
         <DeleteModal
           show={showModal}
           close={handleCloseModal}
