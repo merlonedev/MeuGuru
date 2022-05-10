@@ -4,7 +4,7 @@ export default function NavBar() {
   return (
     <Navbar bg="primary" variant="dark">
       <Container>
-        <Navbar.Brand href="https://github.com/merlonedev/MeuGuru">
+        <Navbar.Brand href="/">
           MeuGuru
         </Navbar.Brand>
         <Nav className="me-auto">

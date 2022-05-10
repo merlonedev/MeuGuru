@@ -29,7 +29,7 @@ export default function RegisterForm() {
         body: JSON.stringify(info),
       })
 
-      await Router.push('/list')
+      await Router.push('/list/1')
     } catch (error) {
       console.error(error)
     }
