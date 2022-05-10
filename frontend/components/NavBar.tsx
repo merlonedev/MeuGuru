@@ -8,7 +8,7 @@ export default function NavBar() {
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/register">Cadastrar</Nav.Link>
-          <Nav.Link href="/list">Lista</Nav.Link>
+          <Nav.Link href="/list/1">Lista</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

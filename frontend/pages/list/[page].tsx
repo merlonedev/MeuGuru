@@ -2,12 +2,18 @@ import Link from 'next/link'
 import Router from 'next/router'
 import { Fragment, useState } from 'react'
 import { Button, Container, Table } from 'react-bootstrap'
-import DeleteModal from '../components/DeleteModal'
+import DeleteModal from '../../components/DeleteModal'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import NavBar from '../components/NavBar'
+import NavBar from '../../components/NavBar'
 
-export async function getServerSideProps() {
-  const data = await fetch('http://localhost:3001/users')
+export async function getServerSideProps({ params }) {
+  // const page = JSON.stringify({ page: params.page })
+
+  const data = await fetch('http://localhost:3001/users', {
+    method: 'GET',
+    headers: { page: params.page },
+  })
+
   const users = await data.json()
 
   return {
