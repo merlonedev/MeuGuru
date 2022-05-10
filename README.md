@@ -23,13 +23,13 @@ buscas por nome e e-mail.
 O código final deve ser apresentado em um repositório público do GitHub.
 
 Ferramentas Obrigatórias:
-● Express
-● Typescript
-● React.JS
-● PostgreSQL
-● Git
+- Express
+- Typescript
+- React.JS
+- PostgreSQL
+- Git
 
 Ferramentas Sugeridas:
-● Prisma ORM (Backend)
-● Next.js (Frontend)
-● GitHu
+- Prisma ORM (Backend)
+- Next.js (Frontend)
+- GitHub
