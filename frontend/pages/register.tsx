@@ -1,5 +1,7 @@
-import React, { Fragment, useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import Link from 'next/link'
+import Router from 'next/router'
+import React, { useState } from 'react'
+import { Button, Container, Form } from 'react-bootstrap'
 
 export default function RegisterForm() {
   const [info, setInfo] = useState({
@@ -24,18 +26,21 @@ export default function RegisterForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(info),
       })
+
+      await Router.push('/')
     } catch (error) {
       console.error(error)
     }
   }
 
   return (
-    <Fragment>
-      <h3>Cadastrar usuário</h3>
+    <Container>
+      <Link href={'/'}>Voltar</Link>
       <Form
         className="d-flex flex-column align-items-center"
         onSubmit={onSubmit}
       >
+        <h3>Cadastrar usuário</h3>
         <Form.Group className="mb-3 w-50 p-2" controlId="email">
           <Form.Label>E-mail</Form.Label>
           <Form.Control type="email" onChange={(e) => onChange(e)} />
@@ -55,6 +60,6 @@ export default function RegisterForm() {
           Cadastrar
         </Button>
       </Form>
-    </Fragment>
+    </Container>
   )
 }
