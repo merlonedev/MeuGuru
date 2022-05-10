@@ -68,4 +68,26 @@ app.get('/user/:id', async (req: Request, res: Response) => {
   return res.json(user)
 })
 
+app.get('/search/:query', async (req: Request, res: Response) => {
+  const { query } = req.params
+  const result = await prisma.user.findMany({
+    where: {
+      OR: [
+        {
+          name: {
+            contains: query,
+          },
+        },
+        {
+          email: {
+            contains: query,
+          },
+        },
+      ],
+    },
+  })
+
+  return res.json(result)
+})
+
 app.listen(3001, () => console.log('Listening on port 3001'))
