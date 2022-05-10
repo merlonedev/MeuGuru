@@ -10,8 +10,15 @@ export async function getServerSideProps() {
   }
 }
 
-export default function UsersList({ users }) {
-  console.log(`🚀 ~ users`, users)
+interface Props {
+  users: {
+    id: number
+    name: string
+    email: string
+  }[]
+}
+
+export default function UsersList({ users }: Props) {
   return (
     <Container>
       <Link href={'/'}>Voltar</Link>
@@ -24,11 +31,11 @@ export default function UsersList({ users }) {
           </tr>
         </thead>
         <tbody>
-          {users.map(({ id, name, email }) => (
+          {users.map((user) => (
             <tr>
-              <td>{id}</td>
-              <td>{name}</td>
-              <td>{email}</td>
+              <td>{user.id}</td>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
             </tr>
           ))}
         </tbody>
