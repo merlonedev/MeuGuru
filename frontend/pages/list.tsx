@@ -1,5 +1,7 @@
 import Link from 'next/link'
+import { useState } from 'react'
 import { Button, Container, Table } from 'react-bootstrap'
+import DeleteModal from '../components/DeleteModal'
 
 export async function getServerSideProps() {
   const data = await fetch('http://localhost:3001/users')
@@ -19,6 +21,18 @@ interface Props {
 }
 
 export default function UsersList({ users }: Props) {
+  const [showModal, setShowModal] = useState(false)
+  const [selected, setSelected] = useState(0)
+
+  const handleShowModal = (id: number) => {
+    setShowModal(true)
+    setSelected(id)
+  }
+
+  const handleCloseModal = () => {
+    setShowModal(false)
+  }
+
   return (
     <Container>
       <Link href={'/'}>Voltar</Link>
@@ -40,12 +54,22 @@ export default function UsersList({ users }: Props) {
                 <Button variant="warning">Editar</Button>
               </td>
               <td className="w-10">
-                <Button variant="danger">Excluir</Button>
+                <Button
+                  variant="danger"
+                  onClick={() => handleShowModal(user.id)}
+                >
+                  Excluir
+                </Button>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
+      <DeleteModal
+        show={showModal}
+        close={handleCloseModal}
+        selected={selected}
+      />
     </Container>
   )
 }
