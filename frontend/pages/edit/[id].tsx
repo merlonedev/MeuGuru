@@ -72,25 +72,6 @@ export default function EditUser({ user }: Props) {
         <Button type="submit">Salvar alterações</Button>
       </Form>
 
-      <Form className="d-flex flex-column align-items-center">
-        <h3>Editar senha</h3>
-        <Form.Group className="mb-2 w-50 p-2" controlId="name">
-          <Form.Label>Senha antiga</Form.Label>
-          <Form.Control type="password" />
-        </Form.Group>
-
-        <Form.Group className="mb-2 w-50 p-2" controlId="name">
-          <Form.Label>Nova senha</Form.Label>
-          <Form.Control type="password" />
-        </Form.Group>
-
-        <Form.Group className="mb-2 w-50 p-2" controlId="name">
-          <Form.Label>Confirmar nova senha</Form.Label>
-          <Form.Control type="password" />
-        </Form.Group>
-
-        <Button type="submit">Confirmar nova senha</Button>
-      </Form>
       <EditModal
         show={showModal}
         email={info.email}
