@@ -1,27 +1,60 @@
+import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import { Container, Form } from 'react-bootstrap'
+import { Button, Container, Form } from 'react-bootstrap'
 
-export default function EditUser() {
-  const router = useRouter()
-  const { id } = router.query
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const data = await fetch(`http://localhost:3001/user/${params.id}`)
+  const user = await data.json()
+  return { props: { user } }
+}
 
-  useEffect(() => {
-    const findUser = async () => {
-      const user = await fetch(`http://localhost:3001/user/${id}`)
-      console.log(user)
-    }
+interface Props {
+  user: {
+    email: string
+    name: string
+    password: string
+    id: number
+  }
+}
 
-    findUser()
-  }, [id])
-
+export default function EditUser({ user }: Props) {
   return (
     <Container>
       <Link href={'/list'}>Voltar</Link>
+      <Form className=" mb-2 d-flex flex-column align-items-center">
+        <h3>Editar usuário</h3>
+        <Form.Group className="mb-2 w-50 p-2" controlId="email">
+          <Form.Label>E-mail</Form.Label>
+          <Form.Control type="email" value={user.email} />
+        </Form.Group>
+
+        <Form.Group className="mb-2 w-50 p-2" controlId="name">
+          <Form.Label>Nome</Form.Label>
+          <Form.Control type="text" value={user.name} />
+        </Form.Group>
+
+        <Button type='submit'>Salvar alterações</Button>
+      </Form>
 
       <Form className="d-flex flex-column align-items-center">
-        <h3>Editar usuário</h3>
+        <h3>Editar senha</h3>
+        <Form.Group className="mb-2 w-50 p-2" controlId="name">
+          <Form.Label>Senha antiga</Form.Label>
+          <Form.Control type="password" />
+        </Form.Group>
+
+        <Form.Group className="mb-2 w-50 p-2" controlId="name">
+          <Form.Label>Nova senha</Form.Label>
+          <Form.Control type="password" />
+        </Form.Group>
+
+        <Form.Group className="mb-2 w-50 p-2" controlId="name">
+          <Form.Label>Confirmar nova senha</Form.Label>
+          <Form.Control type="password" />
+        </Form.Group>
+
+        <Button type='submit'>Confirmar nova senha</Button>
       </Form>
     </Container>
   )

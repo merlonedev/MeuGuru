@@ -41,22 +41,22 @@ export default function RegisterForm() {
         onSubmit={onSubmit}
       >
         <h3>Cadastrar usuário</h3>
-        <Form.Group className="mb-3 w-50 p-2" controlId="email">
+        <Form.Group className="mb-2 w-50 p-2" controlId="email">
           <Form.Label>E-mail</Form.Label>
           <Form.Control type="email" onChange={(e) => onChange(e)} />
         </Form.Group>
 
-        <Form.Group className="mb-3 w-50 p-2" controlId="name">
+        <Form.Group className="mb-2 w-50 p-2" controlId="name">
           <Form.Label>Nome</Form.Label>
           <Form.Control type="text" onChange={(e) => onChange(e)} />
         </Form.Group>
 
-        <Form.Group className="mb-3 w-50 p-2" controlId="password">
+        <Form.Group className="mb-2 w-50 p-2" controlId="password">
           <Form.Label>Senha</Form.Label>
           <Form.Control type="password" onChange={(e) => onChange(e)} />
         </Form.Group>
 
-        <Button variant="primary" type="submit" className="mb-3 w-25">
+        <Button variant="primary" type="submit" className="mb-2 w-25">
           Cadastrar
         </Button>
       </Form>
