@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next'
 import Router from 'next/router'
 import { Fragment, useState } from 'react'
 import { Container } from 'react-bootstrap'
@@ -5,7 +6,7 @@ import DeleteModal from '../../components/DeleteModal'
 import NavBar from '../../components/NavBar'
 import UsersTable from '../../components/UsersTable'
 
-export async function getServerSideProps({ params }) {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const data = await fetch(`http://localhost:3001/search/${params.query}`)
   const users = await data.json()
 

@@ -7,11 +7,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBar from '../../components/NavBar'
 import Paginator from '../../components/Paginator'
 import UsersTable from '../../components/UsersTable'
+import { GetServerSideProps } from 'next'
 
-export async function getServerSideProps({ params }) {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const data = await fetch('http://localhost:3001/users', {
     method: 'GET',
-    headers: { page: params.page },
+    headers: { page: String(params.page) },
   })
   const users = await data.json()
 
