@@ -47,4 +47,13 @@ app.get('/users', async (req: Request, res: Response) => {
   return res.json(users)
 })
 
+app.get('/user/:id', async (req: Request, res: Response) => {
+  const { id } = req.params
+  const user = await prisma.user.findUnique({
+    where: { id: Number(id) },
+  })
+
+  return res.json(user)
+})
+
 app.listen(3001, () => console.log('Listening on port 3001'))
